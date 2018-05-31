@@ -8,14 +8,13 @@
 
 import UIKit
 import Speech
-import PythonAPI
 import PerfectPython
+import PythonAPI
 import Pythonic
 
 
-
 class ViewController: UIViewController,SFSpeechRecognizerDelegate {
-    Py_Initialize()
+
     //physical calculator declaration
     var typingNumber = false
     var display = ""
@@ -269,9 +268,19 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
         }
     }
     ////////////////////////////////////RECORDING LOWER DIVIDER//////////////////////////////////
-
+    
+    
+    //////////////using python to automatically convert english words in textfield to arabic numerals////////////
+    func convertNumber(){
+    //Initialize python environment
+        Py_Initialize()
+    //
+        let pymod = try PyObj(path: "/User/lz/Desktop/voice-calculator/", import: "englishNumberConverter")
+    }
 }
 
+
+//////////////////////Extensions: make String more convenient in swift/////////////////
 extension String {
     func encodedOffset(of character: Character) -> Int? {
         return index(of: character)?.encodedOffset
