@@ -8,9 +8,9 @@
 
 import UIKit
 import Speech
-import PerfectPython
-import PythonAPI
-import Pythonic
+//import PerfectPython
+//import PythonAPI
+//import Pythonic
 
 
 class ViewController: UIViewController,SFSpeechRecognizerDelegate {
@@ -26,7 +26,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     private let audioEngine = AVAudioEngine()
 
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "zh-CN"))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
 
     //struct a stack data structure
     struct Stack {
@@ -87,6 +87,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var microphoneButton: UIButton!
     
+    @IBOutlet weak var textView: UITextView!
     //number buttons and dot button pressed
     @IBAction func buttonPressed(_ sender: UIButton) {
         if typingNumber == true {
@@ -189,10 +190,10 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             microphoneButton.isEnabled = false
-            microphoneButton.setTitle("Start Recording", for: .normal)
+            microphoneButton.setTitle("Start", for: .normal)
         } else {
             startRecording()
-            microphoneButton.setTitle("Stop Recording", for: .normal)
+            microphoneButton.setTitle("Stop", for: .normal)
         }
     }
     
@@ -228,7 +229,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             
             if result != nil {
                 
-                self.textField.text = result?.bestTranscription.formattedString
+                self.textView.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
             
@@ -256,7 +257,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             print("audioEngine couldn't start because of an error.")
         }
         
-        textField.text = "Say something, I'm listening!"
+        textView.text = "Say something, I'm listening!"
         
     }
     
@@ -271,12 +272,13 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     
     
     //////////////using python to automatically convert english words in textfield to arabic numerals////////////
-    func convertNumber(){
-    //Initialize python environment
-        Py_Initialize()
-    //
-        let pymod = try PyObj(path: "/User/lz/Desktop/voice-calculator/", import: "englishNumberConverter")
-    }
+//    func convertNumber(){
+//    //Initialize python environment
+//        Py_Initialize()
+//    //
+//        let pymod = try PyObj(path: "/User/lz/Desktop/voice-calculator/", import: "englishNumberConverter")
+//     var
+//    }
 }
 
 
