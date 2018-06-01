@@ -138,6 +138,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     }
     //equal button pressed
     @IBAction func equal(_ sender: UIButton) {
+        convertNumber(text: textView.text)
         print(stack.count())
         print(operation)
         if typingNumber {
@@ -272,13 +273,39 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     
     
     //////////////using python to automatically convert english words in textfield to arabic numerals////////////
-//    func convertNumber(){
+//    func convertNumberPy(){
 //    //Initialize python environment
 //        Py_Initialize()
 //    //
 //        let pymod = try PyObj(path: "/User/lz/Desktop/voice-calculator/", import: "englishNumberConverter")
 //     var
 //    }
+    func convertNumber(text : String){
+        if textView.text.contains("+"){
+            let temp = textView.text.split(separator: "+")
+            stack.push(String(temp[0]))
+            stack.push(String(temp[1]))
+            operation="+"
+        }
+        if textView.text.contains("-"){
+            let temp = textView.text.split(separator: "-")
+            stack.push(String(temp[0]))
+            stack.push(String(temp[1]))
+            operation="-"
+        }
+        if textView.text.contains("x") && !textView.text.contains("a"){
+            let temp = textView.text.split(separator: "x")
+            stack.push(String(temp[0]))
+            stack.push(String(temp[1]))
+            operation="x"
+        }
+        if textView.text.contains("÷"){
+            let temp = textView.text.split(separator: "÷")
+            stack.push(String(temp[0]))
+            stack.push(String(temp[1]))
+            operation="÷"
+        }
+    }
 }
 
 
