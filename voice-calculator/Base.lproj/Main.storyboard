@@ -23,17 +23,25 @@
                                 <rect key="frame" x="10" y="54" width="355" height="52"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zsH-cd-b4F" userLabel="textView">
-                                        <rect key="frame" x="0.0" y="0.0" width="173.66666666666666" height="52"/>
-                                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="113" height="52"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1PL-no-LUd">
+                                        <rect key="frame" x="121" y="0.0" width="113" height="52"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                        <state key="normal" title="EN / 中">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="languageButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hsu-kb-m5U"/>
+                                        </connections>
+                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="textField" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tet-JF-jKF">
-                                        <rect key="frame" x="181.66666666666663" y="0.0" width="173.33333333333337" height="52"/>
-                                        <color key="backgroundColor" red="0.81137615240000005" green="0.81529584389999998" blue="0.8074564608" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="242" y="0.0" width="113" height="52"/>
                                         <color key="textColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -46,7 +54,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBw-kp-QTx">
                                                 <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="124.33333333333333"/>
-                                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Record">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -57,7 +65,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIb-gT-NPE">
                                                 <rect key="frame" x="90.666666666666686" y="0.0" width="83" height="124.33333333333333"/>
-                                                <color key="backgroundColor" red="0.27067646379999999" green="0.27073907850000001" blue="0.2667663395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                 <state key="normal" title="c">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -68,7 +76,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIS-wF-RMs">
                                                 <rect key="frame" x="181.66666666666666" y="0.0" width="82.666666666666657" height="124.33333333333333"/>
-                                                <color key="backgroundColor" red="0.27067646379999999" green="0.27073907850000001" blue="0.2667663395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                 <state key="normal" title="&lt;-">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -79,7 +87,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="82.666666666666686" placeholderIntrinsicHeight="166" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08B-68-I97">
                                                 <rect key="frame" x="272.33333333333331" y="0.0" width="82.666666666666686" height="124.33333333333333"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                 <state key="normal" title="=">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -128,7 +136,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emg-aM-5SU">
                                                 <rect key="frame" x="272.33333333333331" y="0.0" width="82.666666666666686" height="124.33333333333333"/>
-                                                <color key="backgroundColor" red="0.27067646379999999" green="0.27073907850000001" blue="0.2667663395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                 <state key="normal" title="x">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -177,7 +185,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Hg-tC-jLH">
                                                 <rect key="frame" x="272.33333333333331" y="0.0" width="82.666666666666686" height="124.66666666666667"/>
-                                                <color key="backgroundColor" red="0.27067646379999999" green="0.27073907850000001" blue="0.2667663395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -226,7 +234,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtM-ew-7Jk">
                                                 <rect key="frame" x="272.33333333333331" y="0.0" width="82.666666666666686" height="124.33333333333333"/>
-                                                <color key="backgroundColor" red="0.27067646379999999" green="0.27073907850000001" blue="0.2667663395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                 <state key="normal" title="÷">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -275,7 +283,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znZ-3h-VSx">
                                                 <rect key="frame" x="272.33333333333331" y="0.0" width="82.666666666666686" height="124.33333333333333"/>
-                                                <color key="backgroundColor" red="0.27067646379999999" green="0.27073907850000001" blue="0.2667663395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                 <state key="normal" title="-">
                                                     <color key="titleColor" red="0.99999058249999995" green="0.99999368190000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -304,6 +312,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="languageOption" destination="1PL-no-LUd" id="wji-Ig-cac"/>
                         <outlet property="microphoneButton" destination="eBw-kp-QTx" id="QQX-Ep-3eI"/>
                         <outlet property="textField" destination="tet-JF-jKF" id="p1d-Mt-FHa"/>
                         <outlet property="textView" destination="zsH-cd-b4F" id="2CW-RV-awU"/>

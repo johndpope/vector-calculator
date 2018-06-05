@@ -15,21 +15,22 @@ import AVFoundation
 //import Pythonic
 
 
-class ViewController: UIViewController,SFSpeechRecognizerDelegate {
+class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthesizerDelegate {
 
     //physical calculator declaration
     var typingNumber = false
     var display = ""
     var operation = ""
+    var language = ""
     var buttonSound : AVAudioPlayer?
+    let synth = AVSpeechSynthesizer() //TTS object
+    let audioSession = AVAudioSession.sharedInstance() //voice engine
     
     //speech recognizer declaration
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-
-    
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
+    private var speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
 
     //struct a stack data structure
     struct Stack {
@@ -52,6 +53,10 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
         super.viewDidLoad()
         textField.text=nil
         
+        //text to voice
+        synth.delegate = self
+        
+        //voice to text
         microphoneButton.isEnabled = false  //2
         
         speechRecognizer?.delegate = self  //3
@@ -82,6 +87,9 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             }
         }
         
+        language = "english"
+        
+        
     }
     
     //////////////////viewDidLoad() divider//////////////
@@ -90,14 +98,39 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var microphoneButton: UIButton!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var languageOption: UIButton!
+    
+    //language button pressed
+    @IBAction func languageButton(_ sender: UIButton) {
+        if language == "english" {
+            language = "chinese"
+            languageOption.setTitle("中", for: .normal)
+            languageOption.setTitleColor(.orange, for: .normal)
+            speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "zh-CN"))
+        } else {
+            language = "english"
+            languageOption.setTitle("EN", for: .normal)
+            languageOption.setTitleColor(.orange, for: .normal)
+            speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
+        }
+    }
     
     //number buttons and dot button pressed
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         //find sound clips in https://forvo.com/search/
         buttonSound?.volume = 0.3
+        var fileName = ""
+        var type = ""
+        if language == "english" {
+            fileName = "en"+sender.currentTitle!
+            type = "wav"
+        } else {
+            fileName = "zh"+sender.currentTitle!
+            type = "mp3"
+        }
         if sender.currentTitle != "." {
-            let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "wav")
+            let path = Bundle.main.path(forResource: fileName, ofType: type)
             let url = URL(fileURLWithPath: path!)
             do {
                 buttonSound = try AVAudioPlayer(contentsOf: url)
@@ -108,7 +141,12 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
                 print("couldn't load file :(")
             }
         } else {
-            let path = Bundle.main.path(forResource: "endot", ofType: "mp3")
+            if language == "english" {
+                fileName = "endot"
+            } else {
+                fileName = "zhdot"
+            }
+            let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
             let url = URL(fileURLWithPath: path!)
             do {
                 buttonSound = try AVAudioPlayer(contentsOf: url)
@@ -140,8 +178,15 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     @IBAction func clean(_ sender: UIButton) {
         textField.text=nil
         
+        var fileName = ""
+        if language == "english" {
+            fileName = "en"+sender.currentTitle!
+        } else {
+            fileName = "zh"+sender.currentTitle!
+        }
+        
         buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
+        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
             buttonSound = try AVAudioPlayer(contentsOf: url)
@@ -156,9 +201,15 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
         textField.text?.remove(at: (textField.text?.index(before: (textField.text?.endIndex)!))!)
         }
         
+        var fileName = ""
+        if language == "english" {
+            fileName = "en"+sender.currentTitle!
+        } else {
+            fileName = "zh"+sender.currentTitle!
+        }
         
         buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
+        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
             buttonSound = try AVAudioPlayer(contentsOf: url)
@@ -176,8 +227,15 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
         }
         stack.push(textField.text!)
         
+        var fileName = ""
+        if language == "english" {
+            fileName = "en"+sender.currentTitle!
+        } else {
+            fileName = "zh"+sender.currentTitle!
+        }
+        
         buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
+        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
             buttonSound = try AVAudioPlayer(contentsOf: url)
@@ -197,8 +255,15 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             textField.text = String(number)
         }
         
+        var fileName = ""
+        if language == "english" {
+            fileName = "enreverse"
+        } else {
+            fileName = "zhreverse"
+        }
+        
         buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: "enreverse", ofType: "mp3")
+        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
             buttonSound = try AVAudioPlayer(contentsOf: url)
@@ -210,16 +275,6 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     }
     //equal button pressed
     @IBAction func equal(_ sender: UIButton) {
-        
-        buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
-        let url = URL(fileURLWithPath: path!)
-        do {
-            buttonSound = try AVAudioPlayer(contentsOf: url)
-            buttonSound?.play()
-        } catch {
-            print("couldn't load file :(")
-        }
         
         convertNumber(text: textView.text)
         print(stack.count())
@@ -261,6 +316,12 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
         }
         print(display)
         textField.text = String(display)
+        if language == "english" {
+            speechMessage(message: "equal")
+        } else {
+            speechMessage(message: "等于")
+        }
+        speechMessage(message: textField.text!)
     }
     func enter() {
         typingNumber = false
@@ -394,8 +455,31 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     func replace(text : String){
         textView.text.replacingOccurrences(of: "multiply", with: "x")
         textView.text.replacingOccurrences(of: "divided by", with: "÷")
-        
     }
+    
+    // text to voice
+    func speechMessage(message:String){
+        if !message.isEmpty {
+            do {
+                // set up language environment
+                try audioSession.setCategory(AVAudioSessionCategoryAmbient)
+            }catch let error as NSError{
+                print(error.code)
+            }
+            // text to voice
+            let utterance = AVSpeechUtterance.init(string: message)
+            //choose language
+            if language == "chinese"{
+                utterance.voice = AVSpeechSynthesisVoice.init(language: "zh_CN")
+            } else {
+                utterance.voice = AVSpeechSynthesisVoice.init(language: "en_US")
+            }
+            utterance.volume = 1
+            utterance.pitchMultiplier = 1.1
+            synth.speak(utterance)
+        }
+    }
+    
 }
 
 
