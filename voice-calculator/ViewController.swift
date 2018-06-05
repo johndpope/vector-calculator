@@ -315,10 +315,10 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
             enter()
         }
         print(display)
-        textField.text = String(display)
+        textField.text = String(fomate(display))
         if language == "english" {
             speechMessage(message: "equal")
-        } else {
+        } else { 
             speechMessage(message: "等于")
         }
         speechMessage(message: textField.text!)
@@ -490,6 +490,21 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
             stack.push(String(temp[1]))
             operation="÷"
         }
+    }
+    
+    func fomate(_ numberStr: String) -> String {
+        let number = NSNumber(value: Double(numberStr) ?? 0)
+        if number.doubleValue == 0 {
+            return "0"
+        }
+        let formate = NumberFormatter()
+        formate.minimumIntegerDigits = 1
+        formate.maximumFractionDigits = 2
+        if fabs(number.doubleValue) < 0.01 {
+            formate.minimumFractionDigits = 1
+            formate.maximumSignificantDigits = 1
+        }
+        return formate.string(from: number) ?? "0"
     }
     
     func replace(text : String){
