@@ -385,9 +385,49 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                
                 self.microphoneButton.isEnabled = true
             }
+            
+//            if isFinal {
+//                self.convertNumber(text: self.textView.text)
+//                print(self.stack.count())
+//                print(self.operation)
+//                if self.typingNumber {
+//                    self.stack.push(self.self.textField.text!)
+//                }
+//                if self.stack.count() >= 2 {
+//                    let operand1 = Double(self.stack.pop()!)
+//                    let operand2 = Double(self.stack.pop()!)
+//                    print("hhh", (operand2! / operand1!).truncatingRemainder(dividingBy: 1))
+//                    if self.operation == "÷" {
+//                        self.display = String(operand2! / operand1!)
+//                        if(operand2! / operand1!).truncatingRemainder(dividingBy: 1)==0{
+//                            self.display = String(Int(operand2! / operand1!))
+//                            print(Int(operand2! / operand1!))
+//                        }
+//                    }
+//                    if self.self.operation == "x" {
+//                        self.display = String(operand2! * operand1!)
+//                        if(operand2! * operand1!).truncatingRemainder(dividingBy: 1)==0{
+//                            self.display = String(Int(operand2! * operand1!))
+//                        }
+//                    }
+//                    if self.operation == "-" {
+//                        self.display = String(operand2! - operand1!)
+//                        if(operand2! - operand1!).truncatingRemainder(dividingBy: 1)==0{
+//                            self.display = String(Int(operand2! - operand1!))
+//                        }
+//                    }
+//                    if self.operation == "+" {
+//                        self.display = String(operand2! + operand1!)
+//                        if(operand2! + operand1!).truncatingRemainder(dividingBy: 1)==0{
+//                            self.display = String(Int(operand2! + operand1!))
+//                        }
+//                    }
+//                    self.operation = ""
+//                    self.enter()
+//            }
+//            }
         })
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -403,7 +443,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
             print("audioEngine couldn't start because of an error.")
         }
         
-        textView.text = "Say something, I'm listening!"
+        textView.text = "Hi, I'm listening!"
         
     }
     
