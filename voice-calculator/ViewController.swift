@@ -52,7 +52,11 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.text=nil
-        
+        //future work: use device keyboard to accomplish input
+        //        textField.delegate=self as? UITextFieldDelegate
+        //        textField.returnKeyType=UIReturnKeyType.done
+        textField.inputView = UIView()
+
         //text to voice
         synth.delegate = self
         
@@ -318,7 +322,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
         textField.text = String(fomate(display))
         if language == "english" {
             speechMessage(message: "equal")
-        } else { 
+        } else {
             speechMessage(message: "等于")
         }
         speechMessage(message: textField.text!)
