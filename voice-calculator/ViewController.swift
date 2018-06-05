@@ -8,6 +8,8 @@
 
 import UIKit
 import Speech
+import AVKit
+import AVFoundation
 //import PerfectPython
 //import PythonAPI
 //import Pythonic
@@ -90,6 +92,18 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     @IBOutlet weak var textView: UITextView!
     //number buttons and dot button pressed
     @IBAction func buttonPressed(_ sender: UIButton) {
+        var buttonSound : AVAudioPlayer?
+        buttonSound?.volume = 0.3
+        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "wav")
+        let url = URL(fileURLWithPath: path!)
+        do {
+            buttonSound = try AVAudioPlayer(contentsOf: url)
+            buttonSound?.prepareToPlay()
+            buttonSound?.play()
+            print("sound played")
+        } catch {
+            print("couldn't load file :(")
+        }
         if typingNumber == true {
             let input = sender.currentTitle!
             if sender.currentTitle != "." && sender.currentTitle != "0" {
@@ -109,11 +123,29 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     // clean button pressed
     @IBAction func clean(_ sender: UIButton) {
         textField.text=nil
+        var buttonSound : AVAudioPlayer?
+        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
+        let url = URL(fileURLWithPath: path!)
+        do {
+            buttonSound = try AVAudioPlayer(contentsOf: url)
+            buttonSound?.play()
+        } catch {
+            print("couldn't load file :(")
+        }
     }
     //deleteDigit button pressed
     @IBAction func deleteDigit(_ sender: UIButton) {
         if(textField.text != ""){
         textField.text?.remove(at: (textField.text?.index(before: (textField.text?.endIndex)!))!)
+        }
+        var buttonSound : AVAudioPlayer?
+        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
+        let url = URL(fileURLWithPath: path!)
+        do {
+            buttonSound = try AVAudioPlayer(contentsOf: url)
+            buttonSound?.play()
+        } catch {
+            print("couldn't load file :(")
         }
     }
     //operation button pressed
@@ -124,6 +156,16 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             enter()
         }
         stack.push(textField.text!)
+        
+        var buttonSound : AVAudioPlayer?
+        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
+        let url = URL(fileURLWithPath: path!)
+        do {
+            buttonSound = try AVAudioPlayer(contentsOf: url)
+            buttonSound?.play()
+        } catch {
+            print("couldn't load file :(")
+        }
     }
     
     //negative button pressed
@@ -132,12 +174,33 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             var number = Double(textField.text!)! * -1
             textField.text = String(number)
         } else if textField.text != nil{
-            var number = Int(textField.text!)! * -1
+            let number = Int(textField.text!)! * -1
             textField.text = String(number)
         }
+        
+        var buttonSound : AVAudioPlayer?
+        let path = Bundle.main.path(forResource: "enreverse", ofType: "mp3")
+        let url = URL(fileURLWithPath: path!)
+        do {
+            buttonSound = try AVAudioPlayer(contentsOf: url)
+            buttonSound?.play()
+        } catch {
+            print("couldn't load file :(")
+        }
+        
     }
     //equal button pressed
     @IBAction func equal(_ sender: UIButton) {
+        var buttonSound : AVAudioPlayer?
+        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
+        let url = URL(fileURLWithPath: path!)
+        do {
+            buttonSound = try AVAudioPlayer(contentsOf: url)
+            buttonSound?.play()
+        } catch {
+            print("couldn't load file :(")
+        }
+        
         convertNumber(text: textView.text)
         print(stack.count())
         print(operation)
@@ -231,6 +294,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             if result != nil {
                 
                 self.textView.text = result?.bestTranscription.formattedString
+                self.replace(text: self.textView.text)
                 isFinal = (result?.isFinal)!
             }
             
@@ -306,7 +370,14 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             operation="÷"
         }
     }
+    
+    func replace(text : String){
+        textView.text.replacingOccurrences(of: "multiply", with: "x")
+        textView.text.replacingOccurrences(of: "divided by", with: "÷")
+        
+    }
 }
+
 
 
 //////////////////////Extensions: make String more convenient in swift/////////////////
