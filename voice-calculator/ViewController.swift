@@ -21,6 +21,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     var typingNumber = false
     var display = ""
     var operation = ""
+    var buttonSound : AVAudioPlayer?
     
     //speech recognizer declaration
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -88,22 +89,37 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var microphoneButton: UIButton!
-    
     @IBOutlet weak var textView: UITextView!
+    
     //number buttons and dot button pressed
     @IBAction func buttonPressed(_ sender: UIButton) {
-        var buttonSound : AVAudioPlayer?
+        
+        //find sound clips in https://forvo.com/search/
         buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "wav")
-        let url = URL(fileURLWithPath: path!)
-        do {
-            buttonSound = try AVAudioPlayer(contentsOf: url)
-            buttonSound?.prepareToPlay()
-            buttonSound?.play()
-            print("sound played")
-        } catch {
-            print("couldn't load file :(")
+        if sender.currentTitle != "." {
+            let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "wav")
+            let url = URL(fileURLWithPath: path!)
+            do {
+                buttonSound = try AVAudioPlayer(contentsOf: url)
+                buttonSound?.prepareToPlay()
+                buttonSound?.play()
+                print("sound played")
+            } catch {
+                print("couldn't load file :(")
+            }
+        } else {
+            let path = Bundle.main.path(forResource: "endot", ofType: "mp3")
+            let url = URL(fileURLWithPath: path!)
+            do {
+                buttonSound = try AVAudioPlayer(contentsOf: url)
+                buttonSound?.prepareToPlay()
+                buttonSound?.play()
+                print("sound played")
+            } catch {
+                print("couldn't load file :(")
+            }
         }
+        
         if typingNumber == true {
             let input = sender.currentTitle!
             if sender.currentTitle != "." && sender.currentTitle != "0" {
@@ -123,7 +139,8 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     // clean button pressed
     @IBAction func clean(_ sender: UIButton) {
         textField.text=nil
-        var buttonSound : AVAudioPlayer?
+        
+        buttonSound?.volume = 0.3
         let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
@@ -138,7 +155,9 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
         if(textField.text != ""){
         textField.text?.remove(at: (textField.text?.index(before: (textField.text?.endIndex)!))!)
         }
-        var buttonSound : AVAudioPlayer?
+        
+        
+        buttonSound?.volume = 0.3
         let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
@@ -157,7 +176,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
         }
         stack.push(textField.text!)
         
-        var buttonSound : AVAudioPlayer?
+        buttonSound?.volume = 0.3
         let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
@@ -178,7 +197,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
             textField.text = String(number)
         }
         
-        var buttonSound : AVAudioPlayer?
+        buttonSound?.volume = 0.3
         let path = Bundle.main.path(forResource: "enreverse", ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
@@ -191,7 +210,8 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate {
     }
     //equal button pressed
     @IBAction func equal(_ sender: UIButton) {
-        var buttonSound : AVAudioPlayer?
+        
+        buttonSound?.volume = 0.3
         let path = Bundle.main.path(forResource: "en"+sender.currentTitle!, ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
