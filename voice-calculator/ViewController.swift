@@ -167,7 +167,7 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
             if sender.currentTitle != "." && sender.currentTitle != "0" {
             textField.text = textField.text!+input
                 print(textField.text ?? 1)
-            } else {
+            } else if !(textField.text!.contains(".")){
                 if textField.text != nil {
                     textField.text = textField.text!+input
                     typingNumber = true
@@ -540,7 +540,6 @@ class ViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthe
     }
     
 }
-
 
 
 //////////////////////Extensions: make String more convenient in swift/////////////////
