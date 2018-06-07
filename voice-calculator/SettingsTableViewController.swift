@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class SettingsTableViewController: UIViewController {
     
@@ -40,6 +41,7 @@ class SettingsTableViewController: UIViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
     override func didReceiveMemoryWarning() {
