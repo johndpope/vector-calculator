@@ -337,6 +337,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="calcView" destination="8bC-Xf-vdC" id="Khy-NZ-sdC"/>
                         <outlet property="languageOption" destination="1PL-no-LUd" id="wji-Ig-cac"/>
                         <outlet property="microphoneButton" destination="eBw-kp-QTx" id="QQX-Ep-3eI"/>
                         <outlet property="textField" destination="tet-JF-jKF" id="p1d-Mt-FHa"/>
@@ -362,14 +363,25 @@
                                     <segue destination="kvY-Yr-UKe" kind="embed" id="ROg-CS-WGT"/>
                                 </connections>
                             </containerView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W0O-X0-WBf">
+                                <rect key="frame" x="312" y="106" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="lightModeSwitched:" destination="fee-G3-ZUR" eventType="valueChanged" id="7v5-Bg-te0"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="SVC-zh-DcG"/>
                     </view>
+                    <connections>
+                        <outlet property="lightModeSwitch" destination="W0O-X0-WBf" id="nrQ-rZ-epd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEQ-rf-Ppc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="127.83251231527095"/>
+            <point key="canvasLocation" x="798" y="126"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="jzD-E5-6ac">
@@ -401,7 +413,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Light Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5B-P1-rVO">
-                                                    <rect key="frame" x="16" y="11" width="87" height="21"/>
+                                                    <rect key="frame" x="16" y="11.666666666666657" width="87" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -529,7 +541,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZe-T7-0Mr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1767" y="133"/>
+            <point key="canvasLocation" x="1401" y="125"/>
         </scene>
     </scenes>
 </document>

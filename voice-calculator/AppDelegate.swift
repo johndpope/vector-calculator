@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol CommonBackgroundColor: class {
+    var CommonBGColor: UIColor { get set }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

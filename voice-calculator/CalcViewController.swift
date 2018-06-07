@@ -16,13 +16,15 @@ import AVFoundation
 
 
 class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthesizerDelegate {
-
+        
     //physical calculator declaration
     var typingNumber = false
     var display = ""
     var operation = ""
     var language = ""
     var buttonSound : AVAudioPlayer?
+    var stack = Stack()
+
     let synth = AVSpeechSynthesizer() //TTS object
     let audioSession = AVAudioSession.sharedInstance() //voice engine
     
@@ -31,21 +33,14 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private var speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
-
-    //struct a stack data structure
-    struct Stack {
-        fileprivate var array: [String] = []
-        mutating func push(_ element: String) {
-            array.append(element)
-        }
-        mutating func pop() -> String? {
-            return array.popLast()
-        }
-        mutating func count() ->Int {
-            return array.count
-        }
-    }
-    var stack = Stack()
+    
+    @IBOutlet var calcView: UIView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var microphoneButton: UIButton!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var languageOption: UIButton!
+    
+    
     
     //////////////////viewDidLoad() divider//////////////
     
@@ -56,7 +51,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         //        textField.delegate=self as? UITextFieldDelegate
         //        textField.returnKeyType=UIReturnKeyType.done
         textField.inputView = UIView()
-
+        
         //text to voice
         synth.delegate = self
         
@@ -92,17 +87,20 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         }
         
         language = "english"
-        
-        
+        if SettingsService.sharedService.lightModeStatus == true {
+            SettingsService.sharedService.backgroundColor = UIColor.white
+            SettingsService.sharedService.textColor = UIColor.black
+        } else {
+            SettingsService.sharedService.backgroundColor = UIColor.black
+            SettingsService.sharedService.textColor = UIColor.white
+        }
+        self.view.backgroundColor = SettingsService.sharedService.backgroundColor
+        textView.textColor = SettingsService.sharedService.textColor
+        textField.textColor = SettingsService.sharedService.textColor
+        languageOption.setTitleColor(SettingsService.sharedService.textColor, for: .normal)
     }
     
     //////////////////viewDidLoad() divider//////////////
-
-    
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var microphoneButton: UIButton!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var languageOption: UIButton!
     
     //language button pressed
     @IBAction func languageButton(_ sender: UIButton) {
@@ -560,3 +558,18 @@ extension String {
         return distance(from: startIndex, to: index)
     }
 }
+
+//struct a stack data structure
+struct Stack {
+    fileprivate var array: [String] = []
+    mutating func push(_ element: String) {
+        array.append(element)
+    }
+    mutating func pop() -> String? {
+        return array.popLast()
+    }
+    mutating func count() ->Int {
+        return array.count
+    }
+}
+

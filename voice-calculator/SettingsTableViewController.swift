@@ -10,14 +10,31 @@ import UIKit
 
 class SettingsTableViewController: UIViewController {
     
-
-
+    
+    @IBOutlet weak var lightModeSwitch: UISwitch!
+    @IBAction func lightModeSwitched(_ sender: UISwitch) {
+        if  SettingsService.sharedService.lightModeStatus {
+            SettingsService.sharedService.backgroundColor = UIColor.white
+            SettingsService.sharedService.textColor = UIColor.black
+            SettingsService.sharedService.lightModeStatus = false
+        } else {
+            SettingsService.sharedService.backgroundColor = UIColor.black
+            SettingsService.sharedService.textColor = UIColor.white
+            SettingsService.sharedService.lightModeStatus = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    
-        
+        if SettingsService.sharedService.lightModeStatus == true {
+            SettingsService.sharedService.backgroundColor = UIColor.white
+            SettingsService.sharedService.textColor = UIColor.black
+        } else {
+            SettingsService.sharedService.backgroundColor = UIColor.black
+            SettingsService.sharedService.textColor = UIColor.white
+        }
+        self.view.backgroundColor = SettingsService.sharedService.backgroundColor
+        lightModeSwitch.isOn = SettingsService.sharedService.lightModeStatus
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
