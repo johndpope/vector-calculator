@@ -9,13 +9,6 @@
 import UIKit
 
 class embededTableViewController: UITableViewController {
-    private var nextViewController: CalcViewController!
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? CalcViewController,
-            segue.identifier == "backCalcSegue" {
-            self.nextViewController = vc
-        }
-    }
     @IBOutlet weak var lightModeLabel: UILabel!
     @IBOutlet weak var versionNumberLabel: UILabel!
     @IBOutlet weak var lightModeCell: UIView!
@@ -46,6 +39,7 @@ class embededTableViewController: UITableViewController {
             SettingsService.sharedService.textColor = UIColor.black
             lightModeLabel.textColor = SettingsService.sharedService.textColor
             versionNumberLabel.textColor = SettingsService.sharedService.textColor
+            
         }
     }
     
@@ -59,7 +53,6 @@ class embededTableViewController: UITableViewController {
         feedbackCell.backgroundColor = SettingsService.sharedService.backgroundColor
         shareCell.backgroundColor = SettingsService.sharedService.backgroundColor
         lightModeSwitch.isOn = SettingsService.sharedService.lightModeStatus
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -67,6 +60,11 @@ class embededTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        print("embeded showed")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

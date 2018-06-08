@@ -46,12 +46,12 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textField.text=nil
+        textField.text = nil
         //future work: use device keyboard to accomplish input
         //        textField.delegate=self as? UITextFieldDelegate
         //        textField.returnKeyType=UIReturnKeyType.done
         textField.inputView = UIView()
-        
+        textView.inputView = UIView()
         //text to voice
         synth.delegate = self
         
@@ -251,7 +251,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
     //negative button pressed
     @IBAction func negative(_ sender: UIButton) {
         if textField.text != nil && (textField.text?.contains("."))!{
-            var number = Double(textField.text!)! * -1
+            let number = Double(textField.text!)! * -1
             textField.text = String(number)
         } else if textField.text != nil{
             let number = Int(textField.text!)! * -1
