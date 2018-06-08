@@ -98,6 +98,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         textView.textColor = SettingsService.sharedService.textColor
         textField.textColor = SettingsService.sharedService.textColor
         languageOption.setTitleColor(SettingsService.sharedService.textColor, for: .normal)
+        
     }
     
     //////////////////viewDidLoad() divider//////////////

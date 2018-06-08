@@ -357,42 +357,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1T8-aA-XRT">
-                                <rect key="frame" x="-1" y="55" width="414" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="647"/>
                                 <connections>
-                                    <segue destination="kvY-Yr-UKe" kind="embed" id="ROg-CS-WGT"/>
+                                    <segue destination="kvY-Yr-UKe" kind="embed" id="xLs-cO-Z4v"/>
                                 </connections>
                             </containerView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W0O-X0-WBf">
-                                <rect key="frame" x="355" y="83" width="51" height="31"/>
-                                <color key="onTintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="lightModeSwitched:" destination="fee-G3-ZUR" eventType="valueChanged" id="7v5-Bg-te0"/>
-                                </connections>
-                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="W0O-X0-WBf" firstAttribute="trailing" secondItem="1T8-aA-XRT" secondAttribute="trailing" constant="-10" id="LFd-OX-hhu"/>
                             <constraint firstItem="1T8-aA-XRT" firstAttribute="top" secondItem="SVC-zh-DcG" secondAttribute="top" id="Uz9-Y4-KL3"/>
                             <constraint firstItem="1T8-aA-XRT" firstAttribute="bottom" secondItem="SVC-zh-DcG" secondAttribute="bottom" id="dmh-tx-DJa"/>
                             <constraint firstItem="1T8-aA-XRT" firstAttribute="leading" secondItem="SVC-zh-DcG" secondAttribute="leading" id="kvH-la-wz6"/>
-                            <constraint firstItem="1T8-aA-XRT" firstAttribute="top" secondItem="W0O-X0-WBf" secondAttribute="top" constant="-63" id="qR0-ui-Zpm"/>
                             <constraint firstItem="1T8-aA-XRT" firstAttribute="trailing" secondItem="SVC-zh-DcG" secondAttribute="trailing" id="x11-KY-xab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SVC-zh-DcG"/>
                     </view>
-                    <connections>
-                        <outlet property="lightModeSwitch" destination="W0O-X0-WBf" id="nrQ-rZ-epd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEQ-rf-Ppc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="798" y="126"/>
+            <point key="canvasLocation" x="890" y="162"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Embeded Table View Controller-->
         <scene sceneID="jzD-E5-6ac">
             <objects>
-                <tableViewController id="kvY-Yr-UKe" sceneMemberID="viewController">
+                <tableViewController id="kvY-Yr-UKe" customClass="embededTableViewController" customModule="Voice_Calc" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Aa5-Ot-zMt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -405,7 +393,7 @@
                                 <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="ZII-V7-M72"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="backCalcSegue" id="6vL-j4-2t6"/>
                             </connections>
                         </button>
                         <sections>
@@ -425,7 +413,18 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W0O-X0-WBf">
+                                                    <rect key="frame" x="345" y="7" width="51" height="31"/>
+                                                    <color key="onTintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="lightModeSwitched:" destination="kvY-Yr-UKe" eventType="valueChanged" id="kkI-fp-LjV"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="W0O-X0-WBf" secondAttribute="trailing" constant="20" symbolic="YES" id="5tz-EP-LuY"/>
+                                                <constraint firstItem="W0O-X0-WBf" firstAttribute="centerY" secondItem="yW3-vn-1WY" secondAttribute="centerY" id="Hyq-10-jCt"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
@@ -481,10 +480,19 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
+                    <connections>
+                        <outlet property="feedbackCell" destination="Y1n-FV-Tqp" id="0x9-z6-d7j"/>
+                        <outlet property="lightModeCell" destination="yW3-vn-1WY" id="8Ci-0J-bQw"/>
+                        <outlet property="lightModeLabel" destination="m5B-P1-rVO" id="VDA-Io-MG7"/>
+                        <outlet property="lightModeSwitch" destination="W0O-X0-WBf" id="omO-cn-2uq"/>
+                        <outlet property="shareCell" destination="7Jl-3U-qOG" id="vPb-s8-typ"/>
+                        <outlet property="versionNumberCell" destination="zVb-Ye-La2" id="NRh-Lp-Zm6"/>
+                        <outlet property="versionNumberLabel" destination="5VX-eK-laR" id="NuW-Dl-auS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZe-T7-0Mr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="64"/>
+            <point key="canvasLocation" x="1696" y="126"/>
         </scene>
     </scenes>
 </document>
