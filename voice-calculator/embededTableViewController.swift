@@ -18,6 +18,7 @@ class embededTableViewController: UITableViewController {
     @IBOutlet weak var shareCell: UIView!
     @IBOutlet weak var lightModeSwitch: UISwitch!
     @IBOutlet weak var rateUsButton: UIButton!
+    @IBOutlet weak var tellFriendsButton: UIButton!
     
     @IBAction func lightModeSwitched(_ sender: UISwitch) {
         if  SettingsService.sharedService.lightModeStatus {
@@ -33,6 +34,7 @@ class embededTableViewController: UITableViewController {
             lightModeLabel.textColor = SettingsService.sharedService.textColor
             versionNumberLabel.textColor = SettingsService.sharedService.textColor
             rateUsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
+            tellFriendsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
         } else {
             SettingsService.sharedService.lightModeStatus = true
             SettingsService.sharedService.backgroundColor = UIColor.white
@@ -46,6 +48,7 @@ class embededTableViewController: UITableViewController {
             lightModeLabel.textColor = SettingsService.sharedService.textColor
             versionNumberLabel.textColor = SettingsService.sharedService.textColor
             rateUsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
+            tellFriendsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
         }
     }
     
@@ -66,6 +69,8 @@ class embededTableViewController: UITableViewController {
         lightModeSwitch.isOn = SettingsService.sharedService.lightModeStatus
         rateUsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
         rateUsCell.backgroundColor = SettingsService.sharedService.backgroundColor
+        tellFriendsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

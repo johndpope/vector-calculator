@@ -10,4 +10,7 @@ target 'voice-calculator' do
 	#pod 'PythonAPI'
 	#pod 'Pythonic'
 	pod 'ActiveLabel'
+	pod 'FacebookCore'
+	pod 'FacebookLogin'
+	pod 'FacebookShare'
 end

@@ -483,12 +483,22 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="SHARE" id="lGe-Sn-Non">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WyB-bX-r6k">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="WyB-bX-r6k">
                                         <rect key="frame" x="0.0" y="355.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WyB-bX-r6k" id="7Jl-3U-qOG">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLn-Nr-FiC">
+                                                    <rect key="frame" x="16" y="6" width="83" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <state key="normal" title="Tell Friends">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
@@ -504,6 +514,7 @@
                         <outlet property="rateUsButton" destination="ZHV-Q2-Xkf" id="TDO-w7-pZq"/>
                         <outlet property="rateUsCell" destination="Y1n-FV-Tqp" id="P15-YR-pU9"/>
                         <outlet property="shareCell" destination="7Jl-3U-qOG" id="vPb-s8-typ"/>
+                        <outlet property="tellFriendsButton" destination="xLn-Nr-FiC" id="PCA-oh-TTw"/>
                         <outlet property="versionNumberCell" destination="zVb-Ye-La2" id="NRh-Lp-Zm6"/>
                         <outlet property="versionNumberLabel" destination="5VX-eK-laR" id="NuW-Dl-auS"/>
                     </connections>
