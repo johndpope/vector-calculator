@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FacebookShare
+import Social
 
 class embededTableViewController: UITableViewController {
     @IBOutlet weak var lightModeLabel: UILabel!
@@ -55,6 +57,39 @@ class embededTableViewController: UITableViewController {
     
     @IBAction func rateUsPressed(_ sender: UIButton) {
         gotoAppStore()
+    }
+    
+    @IBAction func tellFriendsPressed(_ sender: UIButton) {
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
+            var fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            
+            self.present(fbShare, animated: true, completion: nil)
+            
+        } else {
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+//        let shareUrl = URL(string: "https://developers.facebook.com")
+//        let content = LinkShareContent(url: shareUrl!)
+//        let shareDialog = ShareDialog(content: content)
+//        shareDialog.mode = .native
+//        shareDialog.failsOnInvalidData = true
+//        shareDialog.completion = { result in
+//            // Handle share results
+//        }
+//        do{
+//            try shareDialog.show()
+//        } catch {
+//            print(error)
+//        }
+//        let shareDialog = MessageDialog(content: content)
+//        shareDialog.completion = { result in
+//            // Handle share results
+//        }
+//        try? ShareDialog.show(from: self, content: content)
+        
     }
     
     override func viewDidLoad() {
