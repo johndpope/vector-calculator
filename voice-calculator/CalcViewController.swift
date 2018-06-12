@@ -123,43 +123,65 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         
         //find sound clips in https://forvo.com/search/
         buttonSound?.volume = 0.3
-        var fileName = ""
-        var type = ""
+//        var fileName = ""
+//        var type = ""
         if language == "english" {
-            fileName = "en"+sender.currentTitle!
-            type = "wav"
-        } else {
-            fileName = "zh"+sender.currentTitle!
-            type = "mp3"
-        }
-        if sender.currentTitle != "." {
-            let path = Bundle.main.path(forResource: fileName, ofType: type)
-            let url = URL(fileURLWithPath: path!)
-            do {
-                buttonSound = try AVAudioPlayer(contentsOf: url)
-                buttonSound?.prepareToPlay()
-                buttonSound?.play()
-                print("sound played")
-            } catch {
-                print("couldn't load file :(")
-            }
-        } else {
-            if language == "english" {
-                fileName = "endot"
+//            fileName = "en"+sender.currentTitle!
+//            type = "wav"
+            if sender.currentTitle == "." {
+                speechMessage(message: "dot")
+            } else if sender.currentTitle == "+"{
+                speechMessage(message: "plus")
+            } else if sender.currentTitle == "-" {
+                speechMessage(message: "minus")
+            } else if sender.currentTitle == "x" {
+                speechMessage(message: "multiply")
             } else {
-                fileName = "zhdot"
+                speechMessage(message: "divided by")
             }
-            let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
-            let url = URL(fileURLWithPath: path!)
-            do {
-                buttonSound = try AVAudioPlayer(contentsOf: url)
-                buttonSound?.prepareToPlay()
-                buttonSound?.play()
-                print("sound played")
-            } catch {
-                print("couldn't load file :(")
+        } else {
+//            fileName = "zh"+sender.currentTitle!
+//            type = "mp3"
+            if sender.currentTitle == "." {
+                speechMessage(message: "点")
+            } else if sender.currentTitle == "+"{
+                speechMessage(message: "加")
+            } else if sender.currentTitle == "-" {
+                speechMessage(message: "减")
+            } else if sender.currentTitle == "x" {
+                speechMessage(message: "乘")
+            } else {
+                speechMessage(message: "除以")
             }
         }
+//        if sender.currentTitle != "." {
+//            let path = Bundle.main.path(forResource: fileName, ofType: type)
+//            let url = URL(fileURLWithPath: path!)
+//            do {
+//                buttonSound = try AVAudioPlayer(contentsOf: url)
+//                buttonSound?.prepareToPlay()
+//                buttonSound?.play()
+//                print("sound played")
+//            } catch {
+//                print("couldn't load file :(")
+//            }
+//        } else {
+//            if language == "english" {
+//                fileName = "endot"
+//            } else {
+//                fileName = "zhdot"
+//            }
+//            let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
+//            let url = URL(fileURLWithPath: path!)
+//            do {
+//                buttonSound = try AVAudioPlayer(contentsOf: url)
+//                buttonSound?.prepareToPlay()
+//                buttonSound?.play()
+//                print("sound played")
+//            } catch {
+//                print("couldn't load file :(")
+//            }
+//        }
         
         if typingNumber == true {
             let input = sender.currentTitle!
@@ -221,8 +243,8 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
             print("couldn't load file :(")
         }
     }
-    //operation button pressed
     
+    //operation button pressed
     @IBAction func operation(_ sender: UIButton) {
         operation = sender.currentTitle!
         if typingNumber {
@@ -276,6 +298,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         }
         
     }
+    
     //equal button pressed
     @IBAction func equal(_ sender: UIButton) {
         
