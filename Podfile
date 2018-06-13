@@ -1,5 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '8.0'
+swift_version = '4.1'
+
 
 target 'voice-calculator' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -14,3 +16,6 @@ target 'voice-calculator' do
 	pod 'FacebookLogin'
 	pod 'FacebookShare'
 end
+
+
+
