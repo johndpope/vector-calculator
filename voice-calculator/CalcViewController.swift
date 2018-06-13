@@ -159,35 +159,6 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
                 speechMessage(message: sender.currentTitle!)
             }
         }
-//        if sender.currentTitle != "." {
-//            let path = Bundle.main.path(forResource: fileName, ofType: type)
-//            let url = URL(fileURLWithPath: path!)
-//            do {
-//                buttonSound = try AVAudioPlayer(contentsOf: url)
-//                buttonSound?.prepareToPlay()
-//                buttonSound?.play()
-//                print("sound played")
-//            } catch {
-//                print("couldn't load file :(")
-//            }
-//        } else {
-//            if language == "english" {
-//                fileName = "endot"
-//            } else {
-//                fileName = "zhdot"
-//            }
-//            let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
-//            let url = URL(fileURLWithPath: path!)
-//            do {
-//                buttonSound = try AVAudioPlayer(contentsOf: url)
-//                buttonSound?.prepareToPlay()
-//                buttonSound?.play()
-//                print("sound played")
-//            } catch {
-//                print("couldn't load file :(")
-//            }
-//        }
-        
         if typingNumber == true {
             let input = sender.currentTitle!
             if sender.currentTitle != "." && sender.currentTitle != "0" {
@@ -337,15 +308,21 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
             recognitionRequest?.endAudio()
             microphoneButton.isEnabled = false
             microphoneButton.setTitle("Start", for: .normal)
+            if language == "english"{
+                speechMessage(message: "start recording")
+            } else {
+                speechMessage(message: "开始录音")
+            }
         } else {
             startRecording()
             microphoneButton.setTitle("Stop", for: .normal)
+            if language == "english"{
+                speechMessage(message: "stop recording")
+            } else {
+                speechMessage(message: "录音完毕")
+            }
         }
-        if language == "english"{
-            speechMessage(message: "start recording")
-        } else {
-            speechMessage(message: "开始录音")
-        }
+        
     }
     
     func startRecording() {
