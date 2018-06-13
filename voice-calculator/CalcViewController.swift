@@ -40,6 +40,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var languageOption: UIButton!
     
+
     
     
     //////////////////viewDidLoad() divider//////////////
@@ -136,8 +137,10 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
                 speechMessage(message: "minus")
             } else if sender.currentTitle == "x" {
                 speechMessage(message: "multiply")
-            } else {
+            } else if sender.currentTitle == "÷"{
                 speechMessage(message: "divided by")
+            } else {
+                speechMessage(message: sender.currentTitle!)
             }
         } else {
 //            fileName = "zh"+sender.currentTitle!
@@ -150,8 +153,10 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
                 speechMessage(message: "减")
             } else if sender.currentTitle == "x" {
                 speechMessage(message: "乘")
-            } else {
+            } else if sender.currentTitle == "÷"{
                 speechMessage(message: "除以")
+            } else {
+                speechMessage(message: sender.currentTitle!)
             }
         }
 //        if sender.currentTitle != "." {
@@ -202,22 +207,10 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
     // clean button pressed
     @IBAction func clean(_ sender: UIButton) {
         textField.text=nil
-        
-        var fileName = ""
-        if language == "english" {
-            fileName = "en"+sender.currentTitle!
+        if language == "english"{
+            speechMessage(message: "clean")
         } else {
-            fileName = "zh"+sender.currentTitle!
-        }
-        
-        buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
-        let url = URL(fileURLWithPath: path!)
-        do {
-            buttonSound = try AVAudioPlayer(contentsOf: url)
-            buttonSound?.play()
-        } catch {
-            print("couldn't load file :(")
+            speechMessage(message: "清零")
         }
     }
     //deleteDigit button pressed
@@ -226,21 +219,10 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         textField.text?.remove(at: (textField.text?.index(before: (textField.text?.endIndex)!))!)
         }
         
-        var fileName = ""
         if language == "english" {
-            fileName = "en"+sender.currentTitle!
+            speechMessage(message: "delete")
         } else {
-            fileName = "zh"+sender.currentTitle!
-        }
-        
-        buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
-        let url = URL(fileURLWithPath: path!)
-        do {
-            buttonSound = try AVAudioPlayer(contentsOf: url)
-            buttonSound?.play()
-        } catch {
-            print("couldn't load file :(")
+            speechMessage(message: "删除")
         }
     }
     
@@ -252,21 +234,26 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         }
         stack.push(textField.text!)
         
-        var fileName = ""
         if language == "english" {
-            fileName = "en"+sender.currentTitle!
+            if sender.currentTitle == "+" {
+                speechMessage(message: "plus")
+            } else if sender.currentTitle == "-" {
+                speechMessage(message: "minus")
+            } else if sender.currentTitle == "x" {
+                speechMessage(message: "multiply")
+            } else {
+                speechMessage(message: "divided by")
+            }
         } else {
-            fileName = "zh"+sender.currentTitle!
-        }
-        
-        buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
-        let url = URL(fileURLWithPath: path!)
-        do {
-            buttonSound = try AVAudioPlayer(contentsOf: url)
-            buttonSound?.play()
-        } catch {
-            print("couldn't load file :(")
+            if sender.currentTitle == "+" {
+                speechMessage(message: "加")
+            } else if sender.currentTitle == "-" {
+                speechMessage(message: "减")
+            } else if sender.currentTitle == "x" {
+                speechMessage(message: "乘")
+            } else {
+                speechMessage(message: "除以")
+            }
         }
     }
     
@@ -280,23 +267,11 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
             textField.text = String(number)
         }
         
-        var fileName = ""
         if language == "english" {
-            fileName = "enreverse"
+            speechMessage(message: "reverse")
         } else {
-            fileName = "zhreverse"
+            speechMessage(message: "取反")
         }
-        
-        buttonSound?.volume = 0.3
-        let path = Bundle.main.path(forResource: fileName, ofType: "mp3")
-        let url = URL(fileURLWithPath: path!)
-        do {
-            buttonSound = try AVAudioPlayer(contentsOf: url)
-            buttonSound?.play()
-        } catch {
-            print("couldn't load file :(")
-        }
-        
     }
     
     //equal button pressed
@@ -365,6 +340,11 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         } else {
             startRecording()
             microphoneButton.setTitle("Stop", for: .normal)
+        }
+        if language == "english"{
+            speechMessage(message: "start recording")
+        } else {
+            speechMessage(message: "开始录音")
         }
     }
     
