@@ -303,11 +303,12 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
     /////////////////////////////////////RECORDING UPPER DIVIDER//////////////////////////////////
     
     @IBAction func microphoneTapped(_ sender: UIButton) {
+
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             microphoneButton.isEnabled = false
-            microphoneButton.setTitle("Start", for: .normal)
+            microphoneButton.setTitle("Stop", for: .normal)
             if language == "english"{
                 speechMessage(message: "start recording")
             } else {
@@ -315,7 +316,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
             }
         } else {
             startRecording()
-            microphoneButton.setTitle("Stop", for: .normal)
+            microphoneButton.setTitle("Start", for: .normal)
             if language == "english"{
                 speechMessage(message: "stop recording")
             } else {
