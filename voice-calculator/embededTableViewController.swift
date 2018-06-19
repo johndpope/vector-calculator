@@ -11,6 +11,7 @@ import FacebookShare
 import Social
 
 class embededTableViewController: UITableViewController {
+
     @IBOutlet weak var lightModeLabel: UILabel!
     @IBOutlet weak var versionNumberLabel: UILabel!
     @IBOutlet weak var lightModeCell: UIView!
@@ -37,6 +38,7 @@ class embededTableViewController: UITableViewController {
             versionNumberLabel.textColor = SettingsService.sharedService.textColor
             rateUsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
             tellFriendsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
+            navigationController?.navigationBar.barTintColor = SettingsService.sharedService.backgroundColor
         } else {
             SettingsService.sharedService.lightModeStatus = true
             SettingsService.sharedService.backgroundColor = UIColor.white
@@ -51,9 +53,9 @@ class embededTableViewController: UITableViewController {
             versionNumberLabel.textColor = SettingsService.sharedService.textColor
             rateUsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
             tellFriendsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
+            navigationController?.navigationBar.barTintColor = SettingsService.sharedService.backgroundColor
         }
     }
-    
     
     @IBAction func rateUsPressed(_ sender: UIButton) {
         gotoAppStore()
@@ -92,6 +94,7 @@ class embededTableViewController: UITableViewController {
         
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = SettingsService.sharedService.backgroundColor
@@ -102,20 +105,50 @@ class embededTableViewController: UITableViewController {
         feedbackCell.backgroundColor = SettingsService.sharedService.backgroundColor
         shareCell.backgroundColor = SettingsService.sharedService.backgroundColor
         lightModeSwitch.isOn = SettingsService.sharedService.lightModeStatus
-        rateUsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
         rateUsCell.backgroundColor = SettingsService.sharedService.backgroundColor
-        tellFriendsButton.titleLabel?.textColor = SettingsService.sharedService.textColor
-
+        navigationController?.navigationBar.barTintColor = SettingsService.sharedService.backgroundColor
+        if rateUsCell.backgroundColor == UIColor.black {
+            rateUsButton.titleLabel?.textColor = UIColor.white
+        } else {
+            rateUsButton.titleLabel?.textColor = UIColor.black
+        }
+        if shareCell.backgroundColor == UIColor.black {
+            tellFriendsButton.titleLabel?.textColor = UIColor.white
+        } else {
+            tellFriendsButton.titleLabel?.textColor = UIColor.black
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
 
     override func viewWillAppear(_ animated: Bool) {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         print("embeded showed")
+        
+        self.view.backgroundColor = SettingsService.sharedService.backgroundColor
+        lightModeLabel.textColor = SettingsService.sharedService.textColor
+        versionNumberLabel.textColor = SettingsService.sharedService.textColor
+        lightModeCell.backgroundColor = SettingsService.sharedService.backgroundColor
+        versionNumberCell.backgroundColor = SettingsService.sharedService.backgroundColor
+        feedbackCell.backgroundColor = SettingsService.sharedService.backgroundColor
+        shareCell.backgroundColor = SettingsService.sharedService.backgroundColor
+        lightModeSwitch.isOn = SettingsService.sharedService.lightModeStatus
+        rateUsCell.backgroundColor = SettingsService.sharedService.backgroundColor
+        navigationController?.navigationBar.barTintColor = SettingsService.sharedService.backgroundColor
+        if rateUsCell.backgroundColor == UIColor.black {
+            rateUsButton.titleLabel?.textColor = UIColor.white
+        } else {
+            rateUsButton.titleLabel?.textColor = UIColor.black
+        }
+        if shareCell.backgroundColor == UIColor.black {
+            tellFriendsButton.titleLabel?.textColor = UIColor.white
+        } else {
+            tellFriendsButton.titleLabel?.textColor = UIColor.black
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -319,6 +319,9 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X8c-jg-3qS">
+                                <rect key="frame" x="0.0" y="64" width="320" height="126"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -330,8 +333,12 @@
                             <constraint firstItem="yrU-20-4tq" firstAttribute="leading" secondItem="adD-06-oxN" secondAttribute="leading" constant="7" id="TAN-0b-K1c"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tet-JF-jKF" secondAttribute="trailing" id="Ypa-da-AaU"/>
                             <constraint firstItem="adD-06-oxN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bHa-zd-rnj"/>
+                            <constraint firstItem="X8c-jg-3qS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="e3d-pz-lo4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X8c-jg-3qS" secondAttribute="trailing" id="eQG-Nu-7gC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="yrU-20-4tq" secondAttribute="top" constant="-10" id="h5L-5G-2ua"/>
+                            <constraint firstItem="X8c-jg-3qS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jL0-d1-8yd"/>
                             <constraint firstItem="adD-06-oxN" firstAttribute="top" secondItem="tet-JF-jKF" secondAttribute="bottom" constant="8" symbolic="YES" id="mRn-p5-tlL"/>
+                            <constraint firstItem="adD-06-oxN" firstAttribute="top" secondItem="X8c-jg-3qS" secondAttribute="bottom" id="pjx-UN-epE"/>
                         </constraints>
                         <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -339,10 +346,14 @@
                     <navigationItem key="navigationItem" id="uER-Tk-nPB">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="tOl-d6-ABz">
                             <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cameraPressed:" destination="BYZ-38-t0r" id="uy9-gg-eZe"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="calcView" destination="8bC-Xf-vdC" id="Khy-NZ-sdC"/>
+                        <outlet property="camImageView" destination="X8c-jg-3qS" id="HKl-LK-n4Q"/>
                         <outlet property="languageOption" destination="1PL-no-LUd" id="wji-Ig-cac"/>
                         <outlet property="microphoneButton" destination="eBw-kp-QTx" id="QQX-Ep-3eI"/>
                         <outlet property="textField" destination="tet-JF-jKF" id="p1d-Mt-FHa"/>
@@ -363,7 +374,7 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1T8-aA-XRT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="kvY-Yr-UKe" kind="embed" id="xLs-cO-Z4v"/>
                                 </connections>
@@ -394,17 +405,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hJ7-oL-Qtv">
-                            <rect key="frame" x="0.0" y="417.5" width="320" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                            <state key="normal" title="Back">
-                                <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <segue destination="JD4-hV-SLH" kind="show" identifier="backCalcSegue" id="6vL-j4-2t6"/>
-                            </connections>
-                        </button>
                         <sections>
                             <tableViewSection headerTitle="SETTINGS" id="fca-2a-dNB">
                                 <cells>
@@ -540,7 +540,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oTS-xQ-XNO">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

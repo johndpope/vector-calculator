@@ -10,12 +10,14 @@ import UIKit
 import Speech
 import AVKit
 import AVFoundation
+import CoreML
+import Vision
 //import PerfectPython
 //import PythonAPI
 //import Pythonic
 
 
-class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSynthesizerDelegate {
+class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeechSynthesizerDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
         
     //physical calculator declaration
     var typingNumber = false
@@ -27,6 +29,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
 
     let synth = AVSpeechSynthesizer() //TTS object
     let audioSession = AVAudioSession.sharedInstance() //voice engine
+    let imagePicker = UIImagePickerController()
     
     //speech recognizer declaration
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -39,6 +42,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
     @IBOutlet weak var microphoneButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var languageOption: UIButton!
+    @IBOutlet weak var camImageView: UIImageView!
     
 
     
@@ -87,6 +91,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
             }
         }
         
+        
         language = "english"
         if SettingsService.sharedService.lightModeStatus == true {
             SettingsService.sharedService.backgroundColor = UIColor.white
@@ -99,8 +104,22 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         textView.textColor = SettingsService.sharedService.textColor
         textField.textColor = SettingsService.sharedService.textColor
         languageOption.setTitleColor(SettingsService.sharedService.textColor, for: .normal)
+        navigationController?.navigationBar.barTintColor = SettingsService.sharedService.backgroundColor
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = SettingsService.sharedService.backgroundColor
+        textView.textColor = SettingsService.sharedService.textColor
+        textField.textColor = SettingsService.sharedService.textColor
+        languageOption.setTitleColor(SettingsService.sharedService.textColor, for: .normal)
+        navigationController?.navigationBar.barTintColor = SettingsService.sharedService.backgroundColor
+
+    }
+    
+    @IBAction func cameraPressed(_ sender: UIBarButtonItem) {
         
     }
+    
     
     //////////////////viewDidLoad() divider//////////////
     
@@ -161,7 +180,7 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
         }
         if typingNumber == true {
             let input = sender.currentTitle!
-            if sender.currentTitle != "." && sender.currentTitle != "0" {
+            if sender.currentTitle != "." && sender.currentTitle != "0" && textField.text != nil && textField.text != "" {
             textField.text = textField.text!+input
                 print(textField.text ?? 1)
             } else if !(textField.text!.contains(".")){
@@ -169,6 +188,8 @@ class CalcViewController: UIViewController,SFSpeechRecognizerDelegate,AVSpeechSy
                     textField.text = textField.text!+input
                     typingNumber = true
                 }
+            } else if textField.text != nil && textField.text != "" {
+                textField.text? += "0."
             }
         } else {
             textField.text=sender.currentTitle!
