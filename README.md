@@ -2,4 +2,4 @@
 
 ## Application Structure
 
-![](https://ws1.sinaimg.cn/large/006tKfTcgy1fs7eqstndjj31kw0yeaf5.jpg)
+![](https://ws4.sinaimg.cn/large/006tKfTcgy1fsgljuruktj31kw0lu787.jpg)
