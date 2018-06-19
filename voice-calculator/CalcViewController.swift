@@ -51,6 +51,11 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        
         textField.text = nil
         //future work: use device keyboard to accomplish input
         //        textField.delegate=self as? UITextFieldDelegate
@@ -116,8 +121,14 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
 
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let userPickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            camImageView.image = userPickedImage
+        }
+    }
+    
     @IBAction func cameraPressed(_ sender: UIBarButtonItem) {
-        
+        present(imagePicker, animated: true, completion: nil)
     }
     
     
