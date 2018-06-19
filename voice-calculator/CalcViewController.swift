@@ -123,10 +123,10 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let userPickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            camImageView.image = userPickedImage
             guard let ciimage = CIImage(image: userPickedImage) else {
                 fatalError("Could not convert to CIImage")
             }
+            detect(image: ciimage)
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
@@ -140,6 +140,9 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
                 fatalError("Model failed to process image")
             }
             print(result)
+            if let firstResult = result.first {
+                self.textField.text = firstResult.identifier
+            }
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -175,14 +178,10 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
     
     //number buttons and dot button pressed
     @IBAction func buttonPressed(_ sender: UIButton) {
-        
+        camImageView.image = nil
         //find sound clips in https://forvo.com/search/
         buttonSound?.volume = 0.3
-//        var fileName = ""
-//        var type = ""
         if language == "english" {
-//            fileName = "en"+sender.currentTitle!
-//            type = "wav"
             if sender.currentTitle == "." {
                 speechMessage(message: "dot")
             } else if sender.currentTitle == "+"{
@@ -197,8 +196,6 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
                 speechMessage(message: sender.currentTitle!)
             }
         } else {
-//            fileName = "zh"+sender.currentTitle!
-//            type = "mp3"
             if sender.currentTitle == "." {
                 speechMessage(message: "点")
             } else if sender.currentTitle == "+"{
@@ -223,7 +220,8 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
                     textField.text = textField.text!+input
                     typingNumber = true
                 }
-            } else if textField.text != nil && textField.text != "" {
+            }
+            if textField.text == nil && textField.text == "" {
                 textField.text? += "0."
             }
         } else {
@@ -239,6 +237,7 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
         } else {
             speechMessage(message: "清零")
         }
+        camImageView.image = nil
     }
     //deleteDigit button pressed
     @IBAction func deleteDigit(_ sender: UIButton) {
@@ -286,6 +285,7 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
     
     //negative button pressed
     @IBAction func negative(_ sender: UIButton) {
+        camImageView.image = nil
         if textField.text != nil && (textField.text?.contains("."))!{
             let number = Double(textField.text!)! * -1
             textField.text = String(number)
@@ -303,7 +303,6 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
     
     //equal button pressed
     @IBAction func equal(_ sender: UIButton) {
-        
         convertNumber(text: textView.text)
         print(stack.count())
         print(operation)
