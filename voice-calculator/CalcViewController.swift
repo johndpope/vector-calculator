@@ -427,46 +427,6 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
                 self.microphoneButton.isEnabled = true
             }
             
-//            if isFinal {
-//                self.convertNumber(text: self.textView.text)
-//                print(self.stack.count())
-//                print(self.operation)
-//                if self.typingNumber {
-//                    self.stack.push(self.self.textField.text!)
-//                }
-//                if self.stack.count() >= 2 {
-//                    let operand1 = Double(self.stack.pop()!)
-//                    let operand2 = Double(self.stack.pop()!)
-//                    print("hhh", (operand2! / operand1!).truncatingRemainder(dividingBy: 1))
-//                    if self.operation == "÷" {
-//                        self.display = String(operand2! / operand1!)
-//                        if(operand2! / operand1!).truncatingRemainder(dividingBy: 1)==0{
-//                            self.display = String(Int(operand2! / operand1!))
-//                            print(Int(operand2! / operand1!))
-//                        }
-//                    }
-//                    if self.self.operation == "x" {
-//                        self.display = String(operand2! * operand1!)
-//                        if(operand2! * operand1!).truncatingRemainder(dividingBy: 1)==0{
-//                            self.display = String(Int(operand2! * operand1!))
-//                        }
-//                    }
-//                    if self.operation == "-" {
-//                        self.display = String(operand2! - operand1!)
-//                        if(operand2! - operand1!).truncatingRemainder(dividingBy: 1)==0{
-//                            self.display = String(Int(operand2! - operand1!))
-//                        }
-//                    }
-//                    if self.operation == "+" {
-//                        self.display = String(operand2! + operand1!)
-//                        if(operand2! + operand1!).truncatingRemainder(dividingBy: 1)==0{
-//                            self.display = String(Int(operand2! + operand1!))
-//                        }
-//                    }
-//                    self.operation = ""
-//                    self.enter()
-//            }
-//            }
         })
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -576,37 +536,4 @@ class CalcViewController: UIViewController, SFSpeechRecognizerDelegate, AVSpeech
     
 }
 
-
-//////////////////////Extensions: make String more convenient in swift/////////////////
-extension String {
-    func encodedOffset(of character: Character) -> Int? {
-        return index(of: character)?.encodedOffset
-    }
-    func encodedOffset(of string: String) -> Int? {
-        return range(of: string)?.lowerBound.encodedOffset
-    }
-    func indexOf(_ target: Character) -> Int? {
-        return self.index(of: target)?.encodedOffset
-    }
-}
-extension String {
-    func indexDistance(of character: Character) -> Int? {
-        guard let index = index(of: character) else { return nil }
-        return distance(from: startIndex, to: index)
-    }
-}
-
-//struct a stack data structure
-struct Stack {
-    fileprivate var array: [String] = []
-    mutating func push(_ element: String) {
-        array.append(element)
-    }
-    mutating func pop() -> String? {
-        return array.popLast()
-    }
-    mutating func count() ->Int {
-        return array.count
-    }
-}
 

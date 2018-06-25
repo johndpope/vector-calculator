@@ -13,6 +13,8 @@
 		283C078220BF972700857E77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 283C078120BF972700857E77 /* Assets.xcassets */; };
 		286F0B5520DB8A7F00854FF3 /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 286F0B5420DB8A7F00854FF3 /* MNIST.mlmodel */; };
 		28901CA520CD222600EAFD03 /* englishNumberConverter.py in Resources */ = {isa = PBXBuildFile; fileRef = 28901CA420CD222600EAFD03 /* englishNumberConverter.py */; };
+		28A0635E20E094EE000C0DA6 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0635D20E094EE000C0DA6 /* Stack.swift */; };
+		28A0636020E09537000C0DA6 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0635F20E09537000C0DA6 /* String.swift */; };
 		28A1BE7F20C903C5006266F9 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A1BE7E20C903C5006266F9 /* SettingsTableViewController.swift */; };
 		28A90BB920C92FF900F3E1B3 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A90BB820C92FF900F3E1B3 /* SettingsService.swift */; };
 		28F360A120CA1A9600E5B1BB /* embededTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F360A020CA1A9600E5B1BB /* embededTableViewController.swift */; };
@@ -29,6 +31,8 @@
 		283C078620BF972800857E77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		286F0B5420DB8A7F00854FF3 /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
 		28901CA420CD222600EAFD03 /* englishNumberConverter.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = englishNumberConverter.py; sourceTree = "<group>"; };
+		28A0635D20E094EE000C0DA6 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		28A0635F20E09537000C0DA6 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		28A1BE7E20C903C5006266F9 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		28A90BB820C92FF900F3E1B3 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		28F360A020CA1A9600E5B1BB /* embededTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = embededTableViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				283C078120BF972700857E77 /* Assets.xcassets */,
 				28901CA420CD222600EAFD03 /* englishNumberConverter.py */,
 				283C078620BF972800857E77 /* Info.plist */,
+				28A0635D20E094EE000C0DA6 /* Stack.swift */,
+				28A0635F20E09537000C0DA6 /* String.swift */,
 			);
 			name = SupportMaterials;
 			sourceTree = "<group>";
@@ -262,9 +268,11 @@
 			files = (
 				286F0B5520DB8A7F00854FF3 /* MNIST.mlmodel in Sources */,
 				283C077D20BF972700857E77 /* CalcViewController.swift in Sources */,
+				28A0635E20E094EE000C0DA6 /* Stack.swift in Sources */,
 				28A1BE7F20C903C5006266F9 /* SettingsTableViewController.swift in Sources */,
 				28A90BB920C92FF900F3E1B3 /* SettingsService.swift in Sources */,
 				28F360A120CA1A9600E5B1BB /* embededTableViewController.swift in Sources */,
+				28A0636020E09537000C0DA6 /* String.swift in Sources */,
 				283C077B20BF972700857E77 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
