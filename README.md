@@ -1,6 +1,6 @@
 # Voice Calculator
 
-![image](https://github.com/zhuangliulz/resume-zhuangliu/blob/master/pooh.gif)
+![image](https://github.com/zhuangliulz/todoey-task-management/blob/master/pooh.gif)
 
 ## Application Structure
 
