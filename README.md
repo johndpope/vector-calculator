@@ -3,7 +3,7 @@
 <iframe 
     height=400 
     width=500 
-    src="https://coub.com/embed/1bfje5?muted=false&autostart=false&originalSize=false&startWithHD=false" 
+    src="https://coub.com/embed/1bfje5" 
     frameborder=0 
     allowfullscreen>
 </iframe>
