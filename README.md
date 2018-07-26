@@ -1,6 +1,12 @@
 # Voice Calculator
 
-<iframe src="https://coub.com/embed/1bfje5?muted=false&autostart=false&originalSize=false&startWithHD=false" allowfullscreen frameborder="0" width="400" height="500" allow="autoplay"></iframe>
+<iframe 
+    height=400 
+    width=500 
+    src="https://coub.com/embed/1bfje5?muted=false&autostart=false&originalSize=false&startWithHD=false" 
+    frameborder=0 
+    allowfullscreen>
+</iframe>
 
 ## Application Structure
 
